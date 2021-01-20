@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- saved from url=(0320)https://cdn.rawgit.com/sam0737/a0ee8ca253fc5c84b2aa2ac018f7b8ad/raw/108196e17c2c9d79ff60ed3bf788973ab94da9af/clock.html?style=font:%20bold%2050px%20monospace;%20color:%20lightgray;%20display:%20inline-block;%20border-radius:%205px;%20padding:%202px%205px;background-color:%20rgba(0,0,0,0.5);&format=kk:mm:ss%20DD/MM/YYYY -->
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Anthony's Includes -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+	<title>Clock Ticker</title>
+    <style>
+        #output {
+            font-family: Helvetica, Arial, sans-serif!important;
+            font-weight: 300!important;
+        }
+    </style>
+
+</head>
+
+<body translate="no" data-new-gr-c-s-check-loaded="14.991.0" data-gr-ext-installed="" style="">
+	<div id="output" style="font: bold 50px monospace; color: lightgray; display: inline-block; border-radius: 5px; padding: 2px 5px;background-color: rgba(0,0,0,0.5);"><span id="time"></span></div>
+
+	<script src="./index_files/moment.min.js.download">
+	</script>
+	<script>
+		var urlParams;
+(function () {
+    var match,
+        pl     = /\+/g,  // Regex for replacing addition symbol with a space
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+        query  = window.location.search.substring(1);
+
+    urlParams = {};
+    while (match = search.exec(query))
+       urlParams[decode(match[1])] = decode(match[2]);
+})();
+
+var output = document.getElementById("output");
+if (urlParams["style"]) output.setAttribute("style", urlParams["style"]);
+if (urlParams["bodyStyle"]) document.body.setAttribute("style", urlParams["bodyStyle"]);
+if (urlParams["title"]) {
+    const newDiv = document.createElement("div");
+
+  // and give it some content
+  const newContent = document.createTextNode(urlParams["title"]);
+
+  // add the text node to the newly created div
+  newDiv.appendChild(newContent);
+
+    output.appendChild(newDiv)
+}
+var c;
+const time = document.querySelector('#time');
+setInterval(
+c = function() {
+    time.innerText = moment().format(urlParams["format"] || '');
+}, 1000);
+c();
+
+	</script>
+</body>
+
+</html>
